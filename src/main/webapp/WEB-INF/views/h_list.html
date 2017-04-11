@@ -7,9 +7,9 @@
 <body>
 <div class="list">
     <div class="house" th:each="h : ${list}">
-        <span class="tag" th:text="${list.tag}"></span>
-        <span class="community" th:text="${list.communityName}"></span>
-        <span class="price" th:text="${list.price}"></span>
+        <span class="tag" th:text="${h.getTag()}"></span>
+        <span class="community" th:text="${h.getCommunityName()}"></span>
+        <span class="price" th:text="${h.getPrice()}"></span>
 
     </div>
 </div>

@@ -83,11 +83,19 @@ public class House {
                 _who="???";
         }
 
-        String str ="{ " + hId + ", " + tag + communityName + ", " + price  + ", " + _balcony + ", " + _bathroom
-                + ", " + _kitchen + room + "室, " + hall  + "厅, " + _rentType  + ", " + _subway  + ", " + _who
-                + ", " + detail;
+        String str ="{ " + hId + ", " + tag +" , "+ communityName + ", " + price  + ", " + _balcony + ", " + _bathroom
+                + ", " + _kitchen + " , " + room + "室, " + hall  + "厅, " + _rentType  + ", " + _subway  + ", " + _who
+                + ", " + detail+" }";
 
         return str;
+    }
+
+    public int gethId() {
+        return hId;
+    }
+
+    public void sethId(int hId) {
+        this.hId = hId;
     }
 
     public String getTag() {
