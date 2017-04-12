@@ -5,13 +5,15 @@
     <title>House List</title>
 </head>
 <body>
-<div class="list">
+<div class="list" th:unless="${list.isEmpty()}">
     <div class="house" th:each="h : ${list}">
         <span class="tag" th:text="${h.getTag()}"></span>
         <span class="community" th:text="${h.getCommunityName()}"></span>
         <span class="price" th:text="${h.getPrice()}"></span>
-
     </div>
+</div>
+<div th:if="${list.isEmpty()}">
+    无结果
 </div>
 </body>
 </html>

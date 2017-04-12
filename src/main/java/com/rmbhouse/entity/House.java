@@ -1,34 +1,48 @@
 package com.rmbhouse.entity;
 
+import com.rmbhouse.annotation.Column;
+
 /**
  * Created by nickChenyx on 2017/4/10.
  */
 public class House {
-    public int hId;
+    private int hId;
     // 房源地址标签：城西，西湖
-    public String tag;
+    @Column
+    private String tag;
     // 小区名
-    public String communityName;
+    @Column
+    private String communityName;
     // 价格
-    public int price;
+    @Column
+    private int price;
     // 阳台 1 有 0 无
-    public int balcony;
+    @Column
+    private int balcony;
     // 卫生间 0 无 1独 2共
-    public int bathroom;
+    @Column
+    private int bathroom;
     // 厨房 0 无 1独 2共
-    public int kitchen;
+    @Column
+    private int kitchen;
     // 室
-    public int room;
+    @Column
+    private int room;
     // 厅
-    public int hall;
+    @Column
+    private int hall;
     // 补充详情
-    public String detail;
+    @Column
+    private String detail;
     // 租房类型  0 整租 1 合租 2 转租 3 单身公寓
-    public int rentType;
+    @Column
+    private int rentType;
     // 离地铁近否 0不近 1近
-    public int subway;
+    @Column
+    private int subway;
     // 0 个人 1 房东 2 中介
-    public int who;
+    @Column
+    private int who;
 
     @Override
     public String toString() {
