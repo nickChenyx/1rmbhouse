@@ -2,7 +2,10 @@ package com.rmbhouse.service.impl;
 
 import com.rmbhouse.dao.HouseDao;
 import com.rmbhouse.entity.House;
+import com.rmbhouse.entity.NameValuePair;
+import com.rmbhouse.entity.QueryHouseEntity;
 import com.rmbhouse.service.HouseService;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,12 +39,12 @@ public class HouseServiceImpl implements HouseService {
 
 
 
-   public House queryByHId(int  hId){
-       logger.debug("HouseService.queryByHId "+hId);
+   public House queryById(int  id){
+       logger.debug("HouseService.queryById "+id);
        /**
         * 直接调用对应 Dao 层的注释的 @Select 方法
         */
-       return sqlSession.selectOne("com.rmbhouse.dao.HouseDao.queryByHId",hId);
+       return sqlSession.selectOne("com.rmbhouse.dao.HouseDao.queryById",id);
    }
 
     public List<House> queryByPrice(int lowPrice,int highPrice){
@@ -64,8 +67,31 @@ public class HouseServiceImpl implements HouseService {
         return sqlSession.selectList("com.rmbhouse.dao.HouseDao.queryByTag",tag);
     }
 
+    public List<House> queryByRentType(int rentType){
+        logger.debug("HouseService.queryByRentType:"+ rentType);
+        return sqlSession.selectList("com.rmbhouse.dao.HouseDao.queryByRentType",rentType);
+    }
+    public List<House> queryByWho(int who){
+        logger.debug("HouseService.queryBy:"+who);
+        return sqlSession.selectList("com.rmbhouse.dao.HouseDao.queryByWho",who);
+    }
+    public List<House> queryBySubway(int subway){
+        logger.debug("HouseService.queryBy:"+subway);
+        return sqlSession.selectList("com.rmbhouse.dao.HouseDao.queryBySubway",subway);
+    }
     public int insertHouse(House house){
         logger.debug("HouseService.insertHouse : "+house);
         return sqlSession.insert("com.rmbhouse.dao.HouseDao.insertHouse",house);
+    }
+
+    public List<House> query(QueryHouseEntity entity){
+        logger.debug("HouseService.query...");
+        return sqlSession.selectList("com.rmbhouse.dao.HouseDao.query",entity);
+    }
+    // todo 查找显示标签名对应的租房数量
+    public List<NameValuePair> queryTagValue(String tag) {
+        if (null == tag){
+        }
+        return null;
     }
 }

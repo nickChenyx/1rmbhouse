@@ -6,42 +6,30 @@ import com.rmbhouse.annotation.Column;
  * Created by nickChenyx on 2017/4/10.
  */
 public class House {
-    private int hId;
+    private int id;
     // 房源地址标签：城西，西湖
-    @Column
     private String tag;
     // 小区名
-    @Column
     private String communityName;
     // 价格
-    @Column
     private int price;
     // 阳台 1 有 0 无
-    @Column
     private int balcony;
     // 卫生间 0 无 1独 2共
-    @Column
     private int bathroom;
     // 厨房 0 无 1独 2共
-    @Column
     private int kitchen;
     // 室
-    @Column
     private int room;
     // 厅
-    @Column
     private int hall;
     // 补充详情
-    @Column
     private String detail;
     // 租房类型  0 整租 1 合租 2 转租 3 单身公寓
-    @Column
     private int rentType;
     // 离地铁近否 0不近 1近
-    @Column
     private int subway;
     // 0 个人 1 房东 2 中介
-    @Column
     private int who;
 
     @Override
@@ -97,19 +85,19 @@ public class House {
                 _who="???";
         }
 
-        String str ="{ " + hId + ", " + tag +" , "+ communityName + ", " + price  + ", " + _balcony + ", " + _bathroom
+        String str ="{ " + id + ", " + tag +" , "+ communityName + ", " + price  + ", " + _balcony + ", " + _bathroom
                 + ", " + _kitchen + " , " + room + "室, " + hall  + "厅, " + _rentType  + ", " + _subway  + ", " + _who
                 + ", " + detail+" }";
 
         return str;
     }
 
-    public int gethId() {
-        return hId;
+    public int getId() {
+        return id;
     }
 
-    public void sethId(int hId) {
-        this.hId = hId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTag() {

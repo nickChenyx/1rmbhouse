@@ -33,16 +33,16 @@ public class HouseSearchController {
         return "h_list";
     }
 
-    @RequestMapping(value="/hId",method = POST)
-    public String searchByHId(@RequestParam("hId")int hId,Model model){
-        House house = houseService.queryByHId(hId);
+    @RequestMapping(value="/id",method = POST)
+    public String searchById(@RequestParam("id")int id,Model model){
+        House house = houseService.queryById(id);
         List<House> list = new ArrayList<House>();
         list.add(house);
         model.addAttribute("list",list);
         return "h_list";
     }
 
-    @RequestMapping(value="/commName",method = POST)
+    @RequestMapping(value="/communityName",method = POST)
     public String searchByCommunityName(@RequestParam("commName")String commName,Model model){
         List<House> list= houseService.queryByCommunityName(commName);
         model.addAttribute("list",list);

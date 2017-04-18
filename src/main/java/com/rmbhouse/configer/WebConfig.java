@@ -1,5 +1,6 @@
 package com.rmbhouse.configer;
 
+import com.rmbhouse.controller.LoginController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,6 +8,7 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
@@ -22,6 +24,14 @@ import org.thymeleaf.templatemode.TemplateMode;
 @ComponentScan(basePackages = "com.rmbhouse.controller")
 public class WebConfig extends WebMvcConfigurerAdapter{
 
+    @Bean
+    public ControllerClassNameHandlerMapping controllerClassNameHandlerMapping(){
+        return new ControllerClassNameHandlerMapping();
+    }
+    @Bean
+    public LoginController loginController(){
+        return new LoginController();
+    }
 
     @Bean
     public SpringResourceTemplateResolver templateResolver(){

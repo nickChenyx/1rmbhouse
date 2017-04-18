@@ -17,7 +17,7 @@ public class HouseSqlProvider {
       return    new SQL() {
             {
                 INSERT_INTO("house");
-//                VALUES("h_id", "#{hId}");//主键已经在数据库自增
+//                VALUES("id", "#{id}");//主键已经在数据库自增
                 VALUES("tag", "#{tag}");
                 VALUES("community_name", "#{communityName}");
                 VALUES("room", "#{room}");

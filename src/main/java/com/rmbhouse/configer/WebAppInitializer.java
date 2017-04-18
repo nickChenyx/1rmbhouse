@@ -1,10 +1,12 @@
 package com.rmbhouse.configer;
 
+import com.rmbhouse.filter.SignInFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,10 +37,14 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
     public void onStartup(ServletContext servletContext) throws ServletException {
         super.onStartup(servletContext);
 
+//        EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
 
         FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("characterEncodingFilter",new CharacterEncodingFilter());
         encodingFilter.setInitParameter("encoding","UTF-8");
         encodingFilter.setInitParameter("forceEncoding","true");
         encodingFilter.addMappingForUrlPatterns(null,true,"/*");
+
+        FilterRegistration.Dynamic signInFilter = servletContext.addFilter("signInFilter",new SignInFilter());
+        signInFilter.addMappingForUrlPatterns(null,true,"/*");
     }
 }

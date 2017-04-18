@@ -7,9 +7,15 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import javax.sql.DataSource;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Properties;
 
 /**
  * 1. 先配置一个数据源 dataSource
@@ -26,8 +32,27 @@ public class DataConfig {
     @Bean
     public DataSource dataSource() {
         logger.debug("dataSource()");
-        DriverManagerDataSource dataSource = new DriverManagerDataSource("jdbc:mysql://localhost:3306/rent?useUnicode=true&characterEncoding=utf8",
-                "root","chenyuxiong123");
+        Properties properties = new Properties();
+        try {
+            properties.load(this.getClass().getClassLoader().getResourceAsStream("jdbc.properties"));
+        }catch (IOException e){
+            System.out.println(e);
+        }
+        String jdbcUrl = null,
+                jdbcUser = null,
+               jdbcPass = null;
+        if ("deploy".equals(properties.getProperty("env"))){
+             jdbcUrl = properties.getProperty("jdbc.deploy.url");
+             jdbcUser = properties.getProperty("jdbc.deploy.user");
+             jdbcPass = properties.getProperty("jdbc.deploy.pass");
+        }else if ("test".equals(properties.getProperty("env"))){
+             jdbcUrl = properties.getProperty("jdbc.test.url");
+             jdbcUser = properties.getProperty("jdbc.test.user");
+             jdbcPass = properties.getProperty("jdbc.test.pass");
+        }
+        logger.info(jdbcUrl+", "+jdbcUser+", "+jdbcPass);
+        DriverManagerDataSource dataSource = new DriverManagerDataSource(jdbcUrl,
+                jdbcUser,jdbcPass);
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
         return dataSource;
     }
